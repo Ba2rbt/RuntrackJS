@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaire d'Inscription</title>
+    <link rel="stylesheet" href="style-inscription.css" />
+    <script src="script-inscription.js" defer></script>
+  </head>
+  <body>
+    <div class="inscription-container">
+      <div class="inscription-box">
+        <h1>S'inscrire</h1>
+
+        <form id="inscriptionForm" method="POST">
+          <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              placeholder="Entrez votre nom"
+              required
+            />
+            <span class="error-message" id="nomError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="prenom">Prénom :</label>
+            <input
+              type="text"
+              id="prenom"
+              name="prenom"
+              placeholder="Entrez votre prénom"
+              required
+            />
+            <span class="error-message" id="prenomError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Adresse Email :</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="votre.email@example.com"
+              required
+            />
+            <span class="error-message" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mot de passe :</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Entrez votre mot de passe"
+              required
+            />
+            <span class="error-message" id="passwordError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="adresse">Adresse :</label>
+            <input
+              type="text"
+              id="adresse"
+              name="adresse"
+              placeholder="Entrez votre adresse"
+              required
+            />
+            <span class="error-message" id="adresseError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="codePostal">Code postal :</label>
+            <input
+              type="text"
+              id="codePostal"
+              name="codePostal"
+              placeholder="Entrez votre code postal"
+              required
+            />
+            <span class="error-message" id="codePostalError"></span>
+          </div>
+
+          <button type="submit" class="btn-inscription">S'inscrire</button>
+        </form>
+
+        <div id="messageInscription" class="message-inscription"></div>
+
+        <p class="connexion-link">
+          Déjà inscrit ? <a href="connexion.html">Se connecter</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
