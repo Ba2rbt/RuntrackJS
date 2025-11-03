@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StatMuse FC - Football Stats</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="blue darken-2">
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo left">
+            <i class="material-icons">sports_soccer</i> StatMuse FC
+          </a>
+          <ul class="right">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="index.html">Joueurs</a></li>
+            <li><a href="index.html">Équipes</a></li>
+            <li><a href="index.html">Statistiques</a></li>
+            <li><a href="index.html">Classement</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container" style="margin-top: 20px; margin-bottom: 20px">
+        <h1 class="center-align">Football - Statistiques en Temps Réel</h1>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l4">
+            <div class="card red darken-2">
+              <div class="card-content white-text">
+                <span class="card-title">Les Meilleurs Buteurs</span>
+                <p>Découvrez les meilleurs buteurs de la saison actuelle.</p>
+                <ul>
+                  <li>Cristiano Ronaldo - 15 buts</li>
+                  <li>Lionel Messi - 14 buts</li>
+                  <li>Robert Lewandowski - 12 buts</li>
+                </ul>
+              </div>
+              <div class="card-action">
+                <a href="index.html">Voir plus</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l4">
+            <div class="card green darken-2">
+              <div class="card-content white-text">
+                <span class="card-title">Les Meilleures Passes</span>
+                <p>Les joueurs avec le plus de passes décisives.</p>
+                <ul>
+                  <li>Thibaut Courtois - 8 passes</li>
+                  <li>Bruno Fernandes - 10 passes</li>
+                  <li>Vinicius Jr - 7 passes</li>
+                </ul>
+              </div>
+              <div class="card-action">
+                <a href="index.html">Voir plus</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l4">
+            <div class="card orange darken-2">
+              <div class="card-content white-text">
+                <span class="card-title">Les Meilleures Équipes</span>
+                <p>Les équipes avec les meilleures performances.</p>
+                <ul>
+                  <li>Real Madrid - 45 points</li>
+                  <li>Manchester City - 44 points</li>
+                  <li>PSG - 42 points</li>
+                </ul>
+              </div>
+              <div class="card-action">
+                <a href="index.html">Voir plus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 m8">
+            <div class="card purple darken-2">
+              <div class="card-content white-text">
+                <span class="card-title">Matchs de la Saison</span>
+                <table class="striped">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Équipe 1</th>
+                      <th>Score</th>
+                      <th>Équipe 2</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>01 Nov 2025</td>
+                      <td>Real Madrid</td>
+                      <td>3 - 1</td>
+                      <td>Barcelona</td>
+                    </tr>
+                    <tr>
+                      <td>02 Nov 2025</td>
+                      <td>Manchester City</td>
+                      <td>2 - 2</td>
+                      <td>Liverpool</td>
+                    </tr>
+                    <tr>
+                      <td>03 Nov 2025</td>
+                      <td>PSG</td>
+                      <td>4 - 0</td>
+                      <td>Monaco</td>
+                    </tr>
+                    <tr>
+                      <td>04 Nov 2025</td>
+                      <td>Juventus</td>
+                      <td>1 - 1</td>
+                      <td>AC Milan</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="card teal darken-2">
+              <div class="card-content white-text">
+                <span class="card-title">Infos Rapides</span>
+                <p><strong>Prochains Matchs :</strong></p>
+                <ul>
+                  <li>Real Madrid vs Atlético - 05 Nov</li>
+                  <li>Bayern Munich vs Dortmund - 06 Nov</li>
+                  <li>Inter Milan vs Roma - 07 Nov</li>
+                </ul>
+              </div>
+              <div class="card-action">
+                <a href="index.html">Calendrier complet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <div class="card indigo darken-2">
+              <div class="card-content white-text">
+                <span class="card-title">Dernières Actualités</span>
+                <div class="row">
+                  <div class="col s12 m6 l4">
+                    <p><strong>Transfert Majeur</strong></p>
+                    <p>
+                      Neymar rejoint le PSG pour 222 millions. Une arrivée
+                      impressionnante dans le football mondial.
+                    </p>
+                  </div>
+                  <div class="col s12 m6 l4">
+                    <p><strong>Recordman</strong></p>
+                    <p>
+                      Messi totalise plus de 700 buts. Une performance
+                      exceptionnelle en carrière professionnelle.
+                    </p>
+                  </div>
+                  <div class="col s12 m6 l4">
+                    <p><strong>Nouveau Champion</strong></p>
+                    <p>
+                      Manchester City remporte son 4ème titre consécutif. Une
+                      domination sportive incontestable.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer blue darken-2">
+      <div class="footer-copyright">
+        <div class="container">
+          <span>© 2025 StatMuse FC - Tous les droits réservés</span>
+          <ul class="right">
+            <li><a href="index.html">À propos</a></li>
+            <li><a href="index.html">Contact</a></li>
+            <li><a href="index.html">Politique</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
