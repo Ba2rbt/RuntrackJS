@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arsenal Events - Live Events & Experiences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
+
+      * {
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background: #fff;
+        color: #333;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .serif-title {
+        font-family: "Noto Serif", serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      h2 {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        line-height: 1.15;
+      }
+
+      p {
+        line-height: 1.6;
+        color: #666;
+      }
+
+      .container {
+        max-width: 1300px;
+      }
+
+      .eyebrow {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #dc143c;
+        margin-bottom: 0.5rem;
+      }
+
+      .transition-smooth {
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .event-card {
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .event-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      .event-image {
+        overflow: hidden;
+        background: linear-gradient(135deg, #dc143c 0%, #990000 100%);
+      }
+
+      .event-image i {
+        transition: transform 0.6s ease;
+      }
+
+      .event-card:hover .event-image i {
+        transform: scale(1.1);
+      }
+
+      .stat-box {
+        transition: all 0.3s ease;
+        border-left: 4px solid #dc143c;
+      }
+
+      .stat-box:hover {
+        background-color: rgba(220, 20, 60, 0.05);
+      }
+
+      .scroll-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 40;
+        display: none;
+      }
+
+      .scroll-to-top.show {
+        display: block;
+      }
+
+      .filter-btn {
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn.active {
+        background-color: #dc143c;
+        color: white;
+      }
+
+      .stat-counter {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #dc143c;
+      }
+
+      .section-hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .featured-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+      }
+
+      .featured-main {
+        grid-row: span 2;
+      }
+
+      @media (max-width: 768px) {
+        .featured-grid {
+          grid-template-columns: 1fr;
+        }
+        .featured-main {
+          grid-row: auto;
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease-in;
+      }
+      .slide-up {
+        animation: slideUp 0.6s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .divider-line {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #e0e0e0 20%,
+          #e0e0e0 80%,
+          transparent
+        );
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <button
+      class="scroll-to-top bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110"
+    >
+      <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <i class="fas fa-shield text-red-600 text-2xl"></i>
+          <h1 class="serif-title text-2xl font-bold text-gray-900">
+            Arsenal Events
+          </h1>
+        </div>
+        <ul class="hidden md:flex gap-8 text-sm font-medium">
+          <li>
+            <a href="#featured" class="hover:text-red-600 transition"
+              >Featured</a
+            >
+          </li>
+          <li>
+            <a href="#stats" class="hover:text-red-600 transition">Stats</a>
+          </li>
+          <li>
+            <a href="#spotlight" class="hover:text-red-600 transition"
+              >Spotlight</a
+            >
+          </li>
+          <li>
+            <a href="#past" class="hover:text-red-600 transition"
+              >Past Events</a
+            >
+          </li>
+          <li>
+            <a href="#newsletter" class="text-red-600 font-bold">Subscribe</a>
+          </li>
+        </ul>
+        <button class="md:hidden text-gray-900">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </nav>
+    </header>
+
+    <section
+      class="section-hero bg-gradient-to-br from-red-700 via-red-600 to-red-800 text-white relative overflow-hidden"
+    >
+      <div class="absolute inset-0 opacity-10">
+        <i class="fas fa-shield text-9xl absolute top-10 left-10"></i>
+        <i class="fas fa-futbol text-8xl absolute bottom-20 right-20"></i>
+      </div>
+      <div class="container mx-auto px-6 relative z-10 text-center fade-in">
+        <div class="eyebrow text-red-200 mb-4">Welcome to Arsenal Events</div>
+        <h2 class="serif-title text-5xl md:text-6xl font-bold mb-6">
+          Live Events & Experiences
+        </h2>
+        <p class="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
+          Join the Arsenal community for unforgettable moments. From match days
+          to exclusive fan experiences.
+        </p>
+        <button
+          class="bg-white text-red-600 px-8 py-3 font-bold rounded-lg hover:bg-gray-100 transition transform hover:scale-105"
+        >
+          Explore Events
+        </button>
+      </div>
+    </section>
+
+    <section id="featured" class="py-28 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="mb-12">
+          <div class="eyebrow">What's on</div>
+          <h2 class="serif-title text-5xl font-bold mb-4">Featured Events</h2>
+          <p class="text-lg text-gray-600 max-w-2xl">
+            Upcoming events you won't want to miss
+          </p>
+        </div>
+
+        <div class="featured-grid mb-16">
+          <div
+            class="featured-main event-card rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="relative h-96 md:h-full event-image flex items-center justify-center"
+            >
+              <i class="fas fa-futbol text-white text-9xl opacity-20"></i>
+              <div
+                class="absolute top-6 right-6 bg-red-600 text-white px-4 py-2 rounded-lg font-bold text-sm"
+              >
+                UPCOMING
+              </div>
+            </div>
+            <div class="p-8 md:p-10 bg-white">
+              <div class="eyebrow">Featured</div>
+              <h3
+                class="serif-title text-4xl md:text-5xl font-bold mb-4 leading-tight"
+              >
+                Arsenal vs Chelsea
+              </h3>
+              <p
+                class="text-sm text-red-600 font-bold mb-6 flex items-center gap-2"
+              >
+                <i class="fas fa-calendar-alt"></i> December 15, 2025 · 19:00
+                GMT · Emirates Stadium
+              </p>
+              <p class="text-gray-700 mb-8 text-base leading-relaxed">
+                The biggest clash of the season. An unforgettable match as
+                Arsenal take on Chelsea at the Emirates. Experience the passion,
+                the energy, and the beautiful game at its finest.
+              </p>
+              <button
+                class="inline-flex items-center gap-2 text-red-600 font-bold hover:text-red-700 text-lg"
+              >
+                Learn More <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div
+              class="event-card rounded-xl overflow-hidden shadow-lg bg-white p-8 border-l-4 border-yellow-500 hover:border-yellow-600"
+            >
+              <div class="flex items-start gap-4 mb-4">
+                <div
+                  class="w-16 h-16 rounded-lg bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-users text-white text-2xl"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="eyebrow">Live</div>
+                  <h4 class="serif-title text-2xl font-bold">Fan Forum</h4>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mb-4">
+                Ask the Manager live questions about the season
+              </p>
+              <p class="text-xs font-bold text-yellow-600">
+                <i class="fas fa-circle text-xs mr-1"></i> ON NOW
+              </p>
+            </div>
+
+            <div
+              class="event-card rounded-xl overflow-hidden shadow-lg bg-white p-8 border-l-4 border-purple-500 hover:border-purple-600"
+            >
+              <div class="flex items-start gap-4 mb-4">
+                <div
+                  class="w-16 h-16 rounded-lg bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="eyebrow">Academy</div>
+                  <h4 class="serif-title text-2xl font-bold">Young Talents</h4>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mb-4">
+                Discover the future stars of Arsenal FC
+              </p>
+              <p class="text-xs font-bold text-gray-500">
+                <i class="fas fa-calendar-alt text-xs mr-1"></i> Coming Soon
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider-line my-12"></div>
+
+        <div class="mb-12">
+          <h3 class="serif-title text-2xl font-bold mb-6">Filter Events</h3>
+          <div class="flex flex-wrap gap-3">
+            <button
+              class="filter-btn active bg-red-600 text-white px-6 py-2.5 rounded-lg font-semibold transition hover:bg-red-700"
+              data-filter="all"
+            >
+              All Events
+            </button>
+            <button
+              class="filter-btn bg-gray-100 text-gray-900 px-6 py-2.5 rounded-lg font-semibold transition hover:bg-gray-200"
+              data-filter="match"
+            >
+              <i class="fas fa-futbol mr-2"></i>Matches
+            </button>
+            <button
+              class="filter-btn bg-gray-100 text-gray-900 px-6 py-2.5 rounded-lg font-semibold transition hover:bg-gray-200"
+              data-filter="fan"
+            >
+              <i class="fas fa-users mr-2"></i>Fan Events
+            </button>
+            <button
+              class="filter-btn bg-gray-100 text-gray-900 px-6 py-2.5 rounded-lg font-semibold transition hover:bg-gray-200"
+              data-filter="academy"
+            >
+              <i class="fas fa-graduation-cap mr-2"></i>Academy
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="event-card rounded-lg overflow-hidden shadow-lg bg-white"
+            data-category="match"
+          >
+            <div
+              class="relative h-48 event-image flex items-center justify-center"
+            >
+              <i class="fas fa-futbol text-white text-5xl opacity-30"></i>
+              <div
+                class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded font-bold text-xs"
+              >
+                MATCH
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="eyebrow">Upcoming</div>
+              <h4 class="serif-title text-xl font-bold mb-3">
+                Arsenal vs Manchester
+              </h4>
+              <p class="text-sm text-red-600 font-bold mb-3">
+                <i class="fas fa-calendar-alt"></i> Dec 22, 2025
+              </p>
+              <p class="text-sm text-gray-600">
+                Premier League match at Emirates Stadium
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="event-card rounded-lg overflow-hidden shadow-lg bg-white"
+            data-category="fan"
+          >
+            <div
+              class="relative h-48 event-image flex items-center justify-center bg-gradient-to-br from-yellow-500 to-yellow-700"
+            >
+              <i class="fas fa-users text-white text-5xl opacity-30"></i>
+              <div
+                class="absolute top-4 right-4 bg-yellow-600 text-white px-3 py-1 rounded font-bold text-xs"
+              >
+                FAN EVENT
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="eyebrow">Live Streaming</div>
+              <h4 class="serif-title text-xl font-bold mb-3">
+                Fan Watch Party
+              </h4>
+              <p class="text-sm text-red-600 font-bold mb-3">
+                <i class="fas fa-circle text-yellow-500 text-xs"></i> Ongoing
+              </p>
+              <p class="text-sm text-gray-600">
+                Watch the match with fellow supporters
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="event-card rounded-lg overflow-hidden shadow-lg bg-white"
+            data-category="academy"
+          >
+            <div
+              class="relative h-48 event-image flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-700"
+            >
+              <i
+                class="fas fa-graduation-cap text-white text-5xl opacity-30"
+              ></i>
+              <div
+                class="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded font-bold text-xs"
+              >
+                ACADEMY
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="eyebrow">Development</div>
+              <h4 class="serif-title text-xl font-bold mb-3">
+                Youth Training Session
+              </h4>
+              <p class="text-sm text-red-600 font-bold mb-3">
+                <i class="fas fa-calendar-alt"></i> Dec 20, 2025
+              </p>
+              <p class="text-sm text-gray-600">
+                Watch Arsenal's young talents in action
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="spotlight" class="py-28 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="mb-16">
+          <div class="eyebrow">In Conversation</div>
+          <h2 class="serif-title text-5xl font-bold">Spotlight</h2>
+        </div>
+
+        <div class="space-y-20">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p class="text-sm text-red-600 font-bold mb-4">ARSENAL LEGEND</p>
+              <h3 class="serif-title text-4xl font-bold mb-6 leading-tight">
+                Bukayo Saka: The Rising Star
+              </h3>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                Follow Bukayo Saka's extraordinary journey from promising
+                beginner to world-class superstar. An in-depth conversation
+                about mentality, inspirations, and his future with Arsenal.
+              </p>
+              <button
+                class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 font-bold rounded-lg transition flex items-center gap-2"
+              >
+                <i class="fas fa-play-circle"></i> Watch Conversation
+              </button>
+            </div>
+            <div
+              class="h-96 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg"
+            >
+              <i class="fas fa-star text-white text-8xl opacity-30"></i>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div
+              class="h-96 rounded-xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center shadow-lg order-2 md:order-1"
+            >
+              <i
+                class="fas fa-graduation-cap text-white text-8xl opacity-30"
+              ></i>
+            </div>
+            <div class="order-1 md:order-2">
+              <p class="text-sm text-red-600 font-bold mb-4">ACADEMY INSIGHT</p>
+              <h3 class="serif-title text-4xl font-bold mb-6 leading-tight">
+                Behind the Scenes: Arsenal Academy
+              </h3>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                Discover the secrets of training young talent at Arsenal. Learn
+                how the academy prepares future champions and shapes a new
+                generation of football stars.
+              </p>
+              <button
+                class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 font-bold rounded-lg transition flex items-center gap-2"
+              >
+                <i class="fas fa-play-circle"></i> Watch Conversation
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p class="text-sm text-red-600 font-bold mb-4">
+                WOMEN'S FOOTBALL
+              </p>
+              <h3 class="serif-title text-4xl font-bold mb-6 leading-tight">
+                Arsenal Women: Breaking Barriers
+              </h3>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                Celebrate the excellence of women's football with Arsenal Women.
+                Explore inspiring stories of players redefining the sport and
+                breaking barriers worldwide.
+              </p>
+              <button
+                class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 font-bold rounded-lg transition flex items-center gap-2"
+              >
+                <i class="fas fa-play-circle"></i> Watch Conversation
+              </button>
+            </div>
+            <div
+              class="h-96 rounded-xl bg-gradient-to-br from-pink-500 to-pink-700 flex items-center justify-center shadow-lg"
+            >
+              <i class="fas fa-female text-white text-8xl opacity-30"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="py-28 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="mb-16">
+          <div class="eyebrow">The Numbers</div>
+          <h2 class="serif-title text-5xl font-bold">Arsenal by the Numbers</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="stat-box p-8 rounded-lg bg-gray-50 hover:bg-red-50 transition-smooth"
+          >
+            <div class="stat-counter text-5xl mb-3">28</div>
+            <p class="serif-title text-lg font-bold text-gray-900 mb-2">
+              League Titles
+            </p>
+            <p class="text-sm text-gray-600">Won throughout our history</p>
+          </div>
+          <div
+            class="stat-box p-8 rounded-lg bg-gray-50 hover:bg-red-50 transition-smooth"
+          >
+            <div class="stat-counter text-5xl mb-3">14</div>
+            <p class="serif-title text-lg font-bold text-gray-900 mb-2">
+              FA Cups
+            </p>
+            <p class="text-sm text-gray-600">Domestic cup victories</p>
+          </div>
+          <div
+            class="stat-box p-8 rounded-lg bg-gray-50 hover:bg-red-50 transition-smooth"
+          >
+            <div class="stat-counter text-5xl mb-3">500K+</div>
+            <p class="serif-title text-lg font-bold text-gray-900 mb-2">
+              Active Fans
+            </p>
+            <p class="text-sm text-gray-600">Worldwide community</p>
+          </div>
+          <div
+            class="stat-box p-8 rounded-lg bg-gray-50 hover:bg-red-50 transition-smooth"
+          >
+            <div class="stat-counter text-5xl mb-3">138</div>
+            <p class="serif-title text-lg font-bold text-gray-900 mb-2">
+              Years Old
+            </p>
+            <p class="text-sm text-gray-600">Founded in 1886</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-28 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="mb-16">
+          <div class="eyebrow">Visual</div>
+          <h2 class="serif-title text-5xl font-bold">Photo Gallery</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="event-card h-64 rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center group cursor-pointer"
+          >
+            <i
+              class="fas fa-image text-white text-6xl opacity-30 group-hover:scale-110 transition-smooth"
+            ></i>
+          </div>
+          <div
+            class="event-card h-64 rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center group cursor-pointer"
+          >
+            <i
+              class="fas fa-image text-white text-6xl opacity-30 group-hover:scale-110 transition-smooth"
+            ></i>
+          </div>
+          <div
+            class="event-card h-64 rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center group cursor-pointer"
+          >
+            <i
+              class="fas fa-image text-white text-6xl opacity-30 group-hover:scale-110 transition-smooth"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="past" class="py-28 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="mb-16">
+          <div class="eyebrow">Archive</div>
+          <h2 class="serif-title text-5xl font-bold mb-4">Past Events</h2>
+          <p class="text-lg text-gray-600">
+            Relive the best moments from past Arsenal events
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div class="event-card rounded-lg overflow-hidden shadow-lg bg-white">
+            <div
+              class="w-full h-40 bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center"
+            >
+              <i class="fas fa-trophy text-white text-5xl opacity-40"></i>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold text-red-600 mb-2">PAST EVENT</p>
+              <h4 class="serif-title text-xl font-bold mb-3">
+                Arsenal Legend Night 2024
+              </h4>
+              <p class="text-sm text-gray-600">
+                A memorable evening with Arsenal legends
+              </p>
+            </div>
+          </div>
+
+          <div class="event-card rounded-lg overflow-hidden shadow-lg bg-white">
+            <div
+              class="w-full h-40 bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center"
+            >
+              <i class="fas fa-crown text-white text-5xl opacity-40"></i>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold text-red-600 mb-2">PAST EVENT</p>
+              <h4 class="serif-title text-xl font-bold mb-3">
+                Title Race Victory
+              </h4>
+              <p class="text-sm text-gray-600">
+                Champion celebration with supporters
+              </p>
+            </div>
+          </div>
+
+          <div class="event-card rounded-lg overflow-hidden shadow-lg bg-white">
+            <div
+              class="w-full h-40 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center"
+            >
+              <i class="fas fa-flag text-white text-5xl opacity-40"></i>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold text-red-600 mb-2">PAST EVENT</p>
+              <h4 class="serif-title text-xl font-bold mb-3">
+                European Competition
+              </h4>
+              <p class="text-sm text-gray-600">Arsenal in European football</p>
+            </div>
+          </div>
+
+          <div class="event-card rounded-lg overflow-hidden shadow-lg bg-white">
+            <div
+              class="w-full h-40 bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center"
+            >
+              <i class="fas fa-stadium text-white text-5xl opacity-40"></i>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold text-red-600 mb-2">PAST EVENT</p>
+              <h4 class="serif-title text-xl font-bold mb-3">Stadium Tour</h4>
+              <p class="text-sm text-gray-600">
+                Exclusive Emirates Stadium visit
+              </p>
+            </div>
+          </div>
+
+          <div class="event-card rounded-lg overflow-hidden shadow-lg bg-white">
+            <div
+              class="w-full h-40 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center"
+            >
+              <i class="fas fa-star text-white text-5xl opacity-40"></i>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold text-red-600 mb-2">PAST EVENT</p>
+              <h4 class="serif-title text-xl font-bold mb-3">Young Talents</h4>
+              <p class="text-sm text-gray-600">Next generation showcase</p>
+            </div>
+          </div>
+
+          <div class="event-card rounded-lg overflow-hidden shadow-lg bg-white">
+            <div
+              class="w-full h-40 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center"
+            >
+              <i class="fas fa-heart text-white text-5xl opacity-40"></i>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold text-red-600 mb-2">PAST EVENT</p>
+              <h4 class="serif-title text-xl font-bold mb-3">Charity Match</h4>
+              <p class="text-sm text-gray-600">
+                Arsenal for humanitarian causes
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button
+            class="text-red-600 hover:text-red-700 font-bold text-lg transition flex items-center justify-center gap-2 mx-auto"
+          >
+            Browse All Past Events <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="newsletter"
+      class="py-28 bg-gradient-to-r from-red-600 to-red-700 text-white"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <div class="eyebrow text-red-200 mb-4">Newsletter</div>
+        <h2 class="serif-title text-5xl font-bold mb-6">Stay Updated</h2>
+        <p class="text-xl text-red-100 mb-12 max-w-2xl mx-auto">
+          Subscribe to get the latest Arsenal events and news delivered to your
+          inbox
+        </p>
+        <div class="flex flex-col md:flex-row gap-3 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Your email"
+            class="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+          />
+          <button
+            class="bg-white text-red-600 px-8 py-4 font-bold rounded-lg hover:bg-gray-100 transition whitespace-nowrap"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-16">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div>
+            <h4 class="font-bold text-white mb-4">Arsenal Events</h4>
+            <p class="text-sm">
+              Your destination for all Arsenal events and experiences
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-4">Quick Links</h4>
+            <ul class="text-sm space-y-2">
+              <li><a href="#" class="hover:text-white transition">Home</a></li>
+              <li>
+                <a href="#" class="hover:text-white transition">Events</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Past Events</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-4">Follow Us</h4>
+            <div class="flex gap-4">
+              <a href="#" class="hover:text-red-600 transition"
+                ><i class="fab fa-facebook text-lg"></i
+              ></a>
+              <a href="#" class="hover:text-red-600 transition"
+                ><i class="fab fa-twitter text-lg"></i
+              ></a>
+              <a href="#" class="hover:text-red-600 transition"
+                ><i class="fab fa-instagram text-lg"></i
+              ></a>
+              <a href="#" class="hover:text-red-600 transition"
+                ><i class="fab fa-youtube text-lg"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-4">Legal</h4>
+            <ul class="text-sm space-y-2">
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 pt-8 text-center text-sm">
+          <p>
+            &copy; 2025 Arsenal Events. All rights reserved. | Powered by
+            Tailwind CSS
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const scrollToTopBtn = document.querySelector(".scroll-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add("show");
+        } else {
+          scrollToTopBtn.classList.remove("show");
+        }
+      });
+
+      scrollToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (href !== "#") {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      });
+
+      document
+        .querySelector("button.md\\:hidden")
+        .addEventListener("click", function () {
+          const nav = document.querySelector("nav ul");
+          nav.classList.toggle("hidden");
+        });
+
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const eventCards = document.querySelectorAll("[data-category]");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.filter;
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          eventCards.forEach((card) => {
+            if (filter === "all" || card.dataset.category === filter) {
+              card.style.display = "block";
+              setTimeout(() => card.classList.add("slide-up"), 10);
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+            if (entry.target.classList.contains("event-card")) {
+              entry.target.classList.add("slide-up");
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".event-card").forEach((card) => {
+        observer.observe(card);
+      });
+
+      const counters = document.querySelectorAll(".stat-counter");
+      let hasAnimated = false;
+
+      const statsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            counters.forEach((counter) => {
+              const text = counter.innerText;
+              const num = parseInt(text.replace(/\D/g, ""));
+              const suffix = text.replace(/\d/g, "");
+              const increment = num / 50;
+              let current = 0;
+
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= num) {
+                  counter.innerText = num + suffix;
+                  clearInterval(timer);
+                } else {
+                  counter.innerText = Math.floor(current) + suffix;
+                }
+              }, 30);
+            });
+          }
+        });
+      }, observerOptions);
+
+      const statsSection = document.getElementById("stats");
+      if (statsSection) {
+        statsObserver.observe(statsSection);
+      }
+    </script>
+  </body>
+</html>

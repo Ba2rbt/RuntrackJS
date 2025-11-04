@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jour 08 - Job 02</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <header class="bg-blue-600 text-white shadow-lg">
+      <nav class="container mx-auto px-4 py-4">
+        <ul class="flex justify-center gap-6">
+          <li>
+            <a href="index.html" class="hover:text-blue-200 transition"
+              >Accueil</a
+            >
+          </li>
+          <li>
+            <a href="index.html" class="hover:text-blue-200 transition"
+              >Inscription</a
+            >
+          </li>
+          <li>
+            <a href="index.html" class="hover:text-blue-200 transition"
+              >Connexion</a
+            >
+          </li>
+          <li>
+            <a href="index.html" class="hover:text-blue-200 transition"
+              >Rechercher</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+      <section>
+        <h1 class="text-3xl font-bold mb-6">Création de compte</h1>
+        <form id="creationForm" class="max-w-md">
+          <fieldset class="mb-6">
+            <legend class="text-lg font-semibold mb-3">Civilité</legend>
+            <div class="mb-2">
+              <label class="flex items-center">
+                <input type="radio" name="civilite" value="monsieur" required />
+                <span class="ml-2">Monsieur</span>
+              </label>
+            </div>
+            <div class="mb-2">
+              <label class="flex items-center">
+                <input type="radio" name="civilite" value="madame" required />
+                <span class="ml-2">Madame</span>
+              </label>
+            </div>
+            <div class="mb-2">
+              <label class="flex items-center">
+                <input type="radio" name="civilite" value="autre" required />
+                <span class="ml-2">Autre</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="mb-4">
+            <label for="prenom" class="block font-semibold mb-1"
+              >Prénom :</label
+            >
+            <input
+              type="text"
+              id="prenom"
+              name="prenom"
+              required
+              class="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="nom" class="block font-semibold mb-1">Nom :</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              required
+              class="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="adresse" class="block font-semibold mb-1"
+              >Adresse :</label
+            >
+            <input
+              type="text"
+              id="adresse"
+              name="adresse"
+              required
+              class="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="email" class="block font-semibold mb-1">Email :</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="motdepasse" class="block font-semibold mb-1"
+              >Mot de passe :</label
+            >
+            <input
+              type="password"
+              id="motdepasse"
+              name="motdepasse"
+              required
+              class="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="confirmationMotdepasse" class="block font-semibold mb-1"
+              >Confirmer le mot de passe :</label
+            >
+            <input
+              type="password"
+              id="confirmationMotdepasse"
+              name="confirmationMotdepasse"
+              required
+              class="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
+          <fieldset class="mb-6">
+            <legend class="text-lg font-semibold mb-3">Vos passions</legend>
+            <div class="mb-2">
+              <label class="flex items-center">
+                <input type="checkbox" name="passions" value="informatique" />
+                <span class="ml-2">Informatique</span>
+              </label>
+            </div>
+            <div class="mb-2">
+              <label class="flex items-center">
+                <input type="checkbox" name="passions" value="voyages" />
+                <span class="ml-2">Voyages</span>
+              </label>
+            </div>
+            <div class="mb-2">
+              <label class="flex items-center">
+                <input type="checkbox" name="passions" value="sport" />
+                <span class="ml-2">Sport</span>
+              </label>
+            </div>
+            <div class="mb-2">
+              <label class="flex items-center">
+                <input type="checkbox" name="passions" value="lecture" />
+                <span class="ml-2">Lecture</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button
+            type="submit"
+            class="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition"
+          >
+            Valider
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="bg-gray-200 mt-8">
+      <ul class="container mx-auto px-4 py-6 flex justify-center gap-6">
+        <li>
+          <a href="index.html" class="hover:text-blue-600 transition"
+            >Accueil</a
+          >
+        </li>
+        <li>
+          <a href="index.html" class="hover:text-blue-600 transition"
+            >Inscription</a
+          >
+        </li>
+        <li>
+          <a href="index.html" class="hover:text-blue-600 transition"
+            >Connexion</a
+          >
+        </li>
+        <li>
+          <a href="index.html" class="hover:text-blue-600 transition"
+            >Rechercher</a
+          >
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

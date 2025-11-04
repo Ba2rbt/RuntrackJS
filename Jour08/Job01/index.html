@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jour 08 - Job 01</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html">Inscription</a></li>
+          <li><a href="index.html">Connexion</a></li>
+          <li><a href="index.html">Rechercher</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h1>Création de compte</h1>
+        <form id="creationForm">
+          <fieldset>
+            <legend>Civilité</legend>
+            <div>
+              <label>
+                <input type="radio" name="civilite" value="monsieur" required />
+                Monsieur
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="civilite" value="madame" required />
+                Madame
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="civilite" value="autre" required />
+                Autre
+              </label>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required />
+          </div>
+
+          <div>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required />
+          </div>
+
+          <div>
+            <label for="adresse">Adresse :</label>
+            <input type="text" id="adresse" name="adresse" required />
+          </div>
+
+          <div>
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div>
+            <label for="motdepasse">Mot de passe :</label>
+            <input type="password" id="motdepasse" name="motdepasse" required />
+          </div>
+
+          <div>
+            <label for="confirmationMotdepasse"
+              >Confirmer le mot de passe :</label
+            >
+            <input
+              type="password"
+              id="confirmationMotdepasse"
+              name="confirmationMotdepasse"
+              required
+            />
+          </div>
+
+          <fieldset>
+            <legend>Vos passions</legend>
+            <div>
+              <label>
+                <input type="checkbox" name="passions" value="informatique" />
+                Informatique
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" name="passions" value="voyages" />
+                Voyages
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" name="passions" value="sport" />
+                Sport
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="checkbox" name="passions" value="lecture" />
+                Lecture
+              </label>
+            </div>
+          </fieldset>
+
+          <button type="submit">Valider</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html">Inscription</a></li>
+        <li><a href="index.html">Connexion</a></li>
+        <li><a href="index.html">Rechercher</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
