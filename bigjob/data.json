@@ -1,0 +1,29 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "nom": "Admin",
+            "prenom": "Super",
+            "email": "admin@laplateforme.io",
+            "password": "password123",
+            "role": "admin"
+        },
+        {
+            "id": 2,
+            "nom": "Modo",
+            "prenom": "Jean",
+            "email": "modo@laplateforme.io",
+            "password": "password123",
+            "role": "moderateur"
+        },
+        {
+            "id": 3,
+            "nom": "Etudiant",
+            "prenom": "Jane",
+            "email": "jane.doe@laplateforme.io",
+            "password": "password123",
+            "role": "utilisateur"
+        }
+    ],
+    "presences": []
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription - La Plateforme_</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-wrapper deep-purple darken-4">
+          <a href="connexion.html" class="brand-logo center"
+            >La Plateforme_ Présence</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <div class="row">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title center-align">Inscription</span>
+              <form id="register-form">
+                <div class="input-field">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input id="nom" type="text" class="validate" required />
+                  <label for="nom">Nom</label>
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input id="prenom" type="text" class="validate" required />
+                  <label for="prenom">Prénom</label>
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix">email</i>
+                  <input id="email" type="email" class="validate" required />
+                  <label for="email">Adresse Email</label>
+                  <span
+                    class="helper-text"
+                    data-error="Email invalide"
+                    data-success="Email valide"
+                    >Doit être une adresse @laplateforme.io</span
+                  >
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix">lock</i>
+                  <input
+                    id="password"
+                    type="password"
+                    class="validate"
+                    required
+                  />
+                  <label for="password">Mot de passe</label>
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix">lock_outline</i>
+                  <input
+                    id="confirm_password"
+                    type="password"
+                    class="validate"
+                    required
+                  />
+                  <label for="confirm_password"
+                    >Confirmer le mot de passe</label
+                  >
+                </div>
+                <div class="center-align">
+                  <button
+                    class="btn waves-effect waves-light deep-purple"
+                    type="submit"
+                    name="action"
+                  >
+                    S'inscrire
+                    <i class="material-icons right">person_add</i>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="card-action center-align">
+              <a href="connexion.html">Déjà un compte ? Se connecter</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer deep-purple darken-4">
+      <div class="footer-copyright">
+        <div class="container center-align">© 2025 La Plateforme_</div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
